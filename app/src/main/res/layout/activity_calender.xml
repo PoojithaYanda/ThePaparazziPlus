@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    tools:context="com.example.loginapp.CalenderActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/myDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/indigo_daisy"
+        android:text="@string/calender"
+        android:textColor="@color/colorAccent"
+        android:textSize="46sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <LinearLayout
+        android:layout_marginTop="55dp"
+        android:background="@drawable/bg_calen"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginHorizontal="1dp"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:background="@color/colorAccent">
+        </CalendarView>
+    </LinearLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/projectsListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <TableRow android:background="@color/colorAccent" android:padding="5dp">
+            <TextView
+                android:id="@+id/layoutTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Project Name" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
