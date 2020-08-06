@@ -24,9 +24,15 @@ public class Checklist {
     public String getItemName() { return this.itemName; }
     public String getDate() { return this.date; }
 
-    public Checklist() {}
+    public Checklist() {
+    }
 
     public Checklist(String name, String date) {
+        this.itemName = name;
+        this.date = date;
+    }
+
+    public Checklist(RestAPIClient client, String name, String date) {
         this.itemName = name;
         this.date = date;
     }
@@ -71,7 +77,7 @@ public class Checklist {
         return checklists;
     }
 
-    private void convertToChecklist(String jsonString) throws Exception {
+    protected void convertToChecklist(String jsonString) throws Exception {
         Log.d(Checklist.class.getName(), "Results - convertToChecklist: " + jsonString);
         JSONObject jsonObject = new JSONObject(jsonString);
         this.pId = jsonObject.getInt("pId");
@@ -81,7 +87,7 @@ public class Checklist {
     }
 
 
-    private static List<Checklist> convertToList(String jsonString) throws Exception {
+    protected static List<Checklist> convertToList(String jsonString) throws Exception {
         Log.d(Checklist.class.getName(), "Results - convertToList: " + jsonString);
         JSONArray array = new JSONArray(jsonString);
         List<Checklist> checklists = new ArrayList<>();

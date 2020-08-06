@@ -75,7 +75,7 @@ public class Project {
         return projects;
     }
 
-    private void convertToProject(String jsonString) throws Exception {
+    protected void convertToProject(String jsonString) throws Exception {
         Log.d(Project.class.getName(), "Results - convertToProject : " + jsonString);
         JSONObject jsonObject = new JSONObject(jsonString);
         this.userId = jsonObject.getInt("userId");
@@ -86,7 +86,7 @@ public class Project {
         this.pId = jsonObject.getInt("pId");
     }
 
-    private static List<Project> convertToList(String jsonString) throws Exception {
+    protected static List<Project> convertToList(String jsonString) throws Exception {
         Log.d(Project.class.getName(), "Results - convertToList : " + jsonString);
         JSONArray array = new JSONArray(jsonString);
         List<Project> projects = new ArrayList<>();
@@ -103,6 +103,18 @@ public class Project {
         }
 
         return projects;
+    }
+
+    public String sendInvoice() {
+        String SEND_INVOICE_URL = String.format(BASE_URL + "project/%s/sendinvoice", pId);
+
+        String result = "Unable to send email.";
+        try {
+            result = new RestAPIClient().execute(SEND_INVOICE_URL).get();
+        } catch (Exception e) {
+            Log.e("Project Model", "Unable to get all projects for user = " + userId, e);
+        }
+        return result;
     }
 
     @Override

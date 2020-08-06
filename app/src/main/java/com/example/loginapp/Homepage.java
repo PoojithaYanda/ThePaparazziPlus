@@ -72,7 +72,6 @@ public class Homepage extends AppCompatActivity implements NavigationView.OnNavi
 
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.nav_login).setVisible(false);
-        menu.findItem(R.id.nav_profile).setVisible(false);
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -107,12 +106,13 @@ public class Homepage extends AppCompatActivity implements NavigationView.OnNavi
                 startActivity(project_intent);
                 break;
             case R.id.nav_checklist:
-                Intent checklist_intent=new Intent(Homepage.this, ChecklistActivity.class);
+                Intent checklist_intent=new Intent(Homepage.this, CalenderActivity.class);
                 startActivity(checklist_intent);
                 break;
-            case R.id.nav_contract:
-                Intent contract_intent=new Intent(Homepage.this, ContractActivity.class);
-                startActivity(contract_intent);
+            case R.id.nav_logout:
+                AppState.setUserInstance(null);
+                Intent logout = new Intent(Homepage.this, MainActivity.class);
+                startActivity(logout);
                 break;
         }
 

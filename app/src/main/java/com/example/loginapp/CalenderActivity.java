@@ -40,7 +40,7 @@ public class CalenderActivity extends AppCompatActivity {
         myDate = (TextView) findViewById(R.id.myDate);
 
         Date currentDate = new Date(calendarView.getDate());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         renderProjectsForDate(dateFormat.format(currentDate));
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -65,7 +65,7 @@ public class CalenderActivity extends AppCompatActivity {
         int counter=0;
         for(int j=0;j<projects.size();j++) {
             final Project thisProject = projects.get(j);
-            Log.d(ProjectActivity.class.getName(), thisProject.toString());
+            Log.d(ProjectActivity.class.getName(), thisProject.getDate() + " , " + date);
             if(date.equals(thisProject.getDate())) {
                 counter++;
                 TableRow newRow = new TableRow(CalenderActivity.this);
@@ -79,7 +79,7 @@ public class CalenderActivity extends AppCompatActivity {
                 nameView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(CalenderActivity.this, ChecklistActivity.class);
+                        Intent intent = new Intent(CalenderActivity.this, ProjectInteractionActivity.class);
                         intent.putExtra("projectId", String.valueOf(thisProject.getpId()));
                         intent.putExtra("projectName", thisProject.getProjectName());
                         startActivity(intent);

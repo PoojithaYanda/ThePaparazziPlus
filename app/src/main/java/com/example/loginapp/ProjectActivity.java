@@ -80,11 +80,6 @@ public class ProjectActivity extends AppCompatActivity {
                     intent.putExtra("projectId", String.valueOf(thisProject.getpId()));
                     intent.putExtra("projectName", thisProject.getProjectName());
                     startActivity(intent);
-//                    Intent intent = new Intent(ProjectActivity.this, ChecklistActivity.class);
-//                    Log.d(ProjectActivity.class.getName(), String.format("pId = %s , name = %s", thisProject.getpId(), thisProject.getProjectName()));
-//                    intent.putExtra("projectId", String.valueOf(thisProject.getpId()));
-//                    intent.putExtra("projectName", thisProject.getProjectName());
-//                    startActivity(intent);
                 }
             });
 

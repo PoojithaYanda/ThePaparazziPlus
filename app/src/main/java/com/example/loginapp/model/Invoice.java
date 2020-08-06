@@ -26,9 +26,16 @@ public class Invoice {
     public double getPrice() { return this.price; }
     public int getQuantity() { return this.quantity; }
 
-    public Invoice() {}
+    public Invoice() {
+    }
 
     public Invoice(String itemName, double price, int quantity) {
+        this.itemName = itemName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Invoice(RestAPIClient client, String itemName, double price, int quantity) {
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;
@@ -48,7 +55,7 @@ public class Invoice {
     }
 
     public Invoice createInvoice(int pId, String itemName, double price, int quantity) {
-        String CREATE_INVOICE_URL = String.format(BASE_URL + "project/%s/invoice/create?item_Name=%s&price=%s,quantity=%s", pId, itemName, price, quantity);
+        String CREATE_INVOICE_URL = String.format(BASE_URL + "project/%s/invoice/create?item_Name=%s&price=%s&quantity=%s", pId, itemName, price, quantity);
         try {
             String result = new RestAPIClient().execute(CREATE_INVOICE_URL).get();
             Log.e("Invoice Model", result);
@@ -72,7 +79,7 @@ public class Invoice {
         return invoices;
     }
 
-    private void convertToInvoice(String jsonString) throws Exception {
+    protected void convertToInvoice(String jsonString) throws Exception {
         JSONObject jsonObject = new JSONObject(jsonString);
         this.pId = jsonObject.getInt("pId");
         this.invoiceId = jsonObject.getInt("invoiceId");
@@ -81,7 +88,7 @@ public class Invoice {
         this.quantity = jsonObject.getInt("quantity");
     }
 
-    private static List<Invoice> convertToList(String jsonString) throws Exception {
+    protected static List<Invoice> convertToList(String jsonString) throws Exception {
         Log.d(Invoice.class.getName(), "Result - converToList: " + jsonString);
         JSONArray array = new JSONArray(jsonString);
         List<Invoice> invoices = new ArrayList<>();

@@ -7,13 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RestAPIClient extends AsyncTask<String, Void, String> {
+
     public static final String REQUEST_METHOD = "GET";
-    public static final int READ_TIMEOUT = 300000;
-    public static final int CONNECTION_TIMEOUT = 300000;
+    public static final int READ_TIMEOUT = 30000;
+    public static final int CONNECTION_TIMEOUT = 30000;
 
     @Override
     protected String doInBackground(String... params) {

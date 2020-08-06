@@ -41,7 +41,8 @@ public class RegisterFragment extends Fragment {
                 newUser.createUser(nameView.getText().toString(), emailView.getText().toString(), passwordView.getText().toString());
                 if ("".equals(newUser.getErrorMessage())) {
                     Log.d("REGISTRATION VIEW", "Registration successful.");
-                    openhomepage(view);
+                    Intent thisIntent = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(thisIntent);
                 } else {
                     Log.e("LOGIN VIEW", newUser.getErrorMessage());
                 }
@@ -57,8 +58,8 @@ public class RegisterFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_register, container, false);
     }
 
-    public void openhomepage(View view) {
-        Intent intent = new Intent(view.getContext(), Homepage.class);
-        startActivity(intent);
-    }
+//    public void openhomepage(View view) {
+//        Intent intent = new Intent(view.getContext(), Homepage.class);
+//        startActivity(intent);
+//    }
 }

@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.loginapp.model.Invoice;
+import com.example.loginapp.model.Project;
 
 import java.util.List;
 
@@ -97,10 +99,37 @@ public class InvoiceActivity extends AppCompatActivity {
             newRow.addView(quantityView);
 
             tableLayout.addView(newRow, i + 1);
-
         }
 
+        if (invoices.size() > 0) {
+            TableRow newRow = new TableRow(this);
+            newRow.setPadding(10, 10, 10, 10);
+            newRow.setBackgroundColor(Color.parseColor("#F1F1F1"));
 
+            final TextView resultView = new TextView(this);
+            TableRow.LayoutParams priceParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+            resultView.setLayoutParams(priceParams);
+            resultView.setText("");
+
+            final Button sendBtn = new Button(this);
+            TableRow.LayoutParams nameParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 2.0f);
+            sendBtn.setLayoutParams(nameParams);
+            sendBtn.setText("Send Invoice");
+
+            sendBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Project thisProject = new Project();
+                    thisProject.getProject(projectId);
+                    String result = thisProject.sendInvoice();
+                    resultView.setText(result);
+                }
+            });
+
+            newRow.addView(sendBtn);
+            newRow.addView(resultView);
+            tableLayout.addView(newRow, invoices.size() + 1);
+        }
     }
 
 }
